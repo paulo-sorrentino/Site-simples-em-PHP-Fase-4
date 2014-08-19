@@ -1,14 +1,10 @@
 <?php
-
-if (preg_match('/\.(?:png|jpg|jpeg|gif|css|js)$/', $_SERVER["REQUEST_URI"])) {
-
-    return false;
-}
-
+require 'app/init.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <base href="<?php echo BASE_URL; ?>" target="_self"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,15 +31,15 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif|css|js)$/', $_SERVER["REQUEST_URI"])) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="?go=home">SSPhp</a>
+                <a class="navbar-brand" href="home">SSPhp</a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav" id="main-nav">
-                    <li><a href="?go=home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                    <li><a href="?go=empresa"><span class="glyphicon glyphicon-briefcase"></span> Empresa</a></li>
-                    <li><a href="?go=produtos"><span class="glyphicon glyphicon-shopping-cart"></span> Produtos</a></li>
-                    <li><a href="?go=servicos"><span class="glyphicon glyphicon-list-alt"></span> Serviços</a></li>
-                    <li><a href="?go=contato"><span class="glyphicon glyphicon-envelope"></span> Contato</a></li>
+                    <li><a href="home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li><a href="empresa"><span class="glyphicon glyphicon-briefcase"></span> Empresa</a></li>
+                    <li><a href="produtos"><span class="glyphicon glyphicon-shopping-cart"></span> Produtos</a></li>
+                    <li><a href="servicos"><span class="glyphicon glyphicon-list-alt"></span> Serviços</a></li>
+                    <li><a href="contato"><span class="glyphicon glyphicon-envelope"></span> Contato</a></li>
                 </ul>
             </div>
             <!-- collapse -->
@@ -53,24 +49,7 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif|css|js)$/', $_SERVER["REQUEST_URI"])) {
     <!-- Corpo -->
     <div class="container">
 
-        <?php
-
-        $paginas = array('home', 'empresa', 'produtos', 'servicos', 'contato');
-        $go = 'home';
-        if (isset($_GET) && isset($_GET['go'])) {
-            $request = $_GET['go'];
-
-            if (in_array($request, $paginas)) {
-                $go = $request;
-            } else {
-                $go = '404';
-            }
-
-        }
-
-        require_once 'includes/' . $go . '.php';
-
-        ?>
+        <?php $route(); ?>
 
         <div class="footer footer-main">
             Todos os direitos reservados - <?php echo date('Y'); ?>

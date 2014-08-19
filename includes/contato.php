@@ -9,7 +9,7 @@
         if (!$_POST) {
             ?>
 
-            <form role="form" class="form-horizontal" method="post" action="?go=contato">
+            <form role="form" class="form-horizontal" method="post" action="contato">
                 <fieldset>
                     <div class="form-group">
                         <label for="nome" class="col-lg-2 control-label">Nome</label>

@@ -4,7 +4,6 @@ require 'app/init.php';
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <base href="<?php echo BASE_URL; ?>" target="_self"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,7 +48,7 @@ require 'app/init.php';
     <!-- Corpo -->
     <div class="container">
 
-        <?php $route(); ?>
+        <?php $route();?>
 
         <div class="footer footer-main">
             Todos os direitos reservados - <?php echo date('Y'); ?>

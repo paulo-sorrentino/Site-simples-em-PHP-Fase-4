@@ -1,17 +1,20 @@
 <?php
 
+if (preg_match('/\.(?:png|jpg|jpeg|gif|css|js)$/', $_SERVER["REQUEST_URI"])) {
+    return false;
+}
+
 $paginas = array('home', 'empresa', 'produtos', 'servicos', 'contato');
 
 $route = function () use ($paginas) {
 
-    if (isset($_GET['request'])) {
-        $rota = explode('/', rtrim($_GET['request'], '/'))[0];
-    } else {
-        $rota = 'home';
-    }
+    $rota = parse_url('http://' . $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+    $path = str_replace('/','',$rota['path']);
 
-    if (file_exists('includes/' . $rota . '.php') && in_array($rota, $paginas)) {
-        $go = $rota;
+    if (in_array($path, $paginas)) {
+        if (file_exists('includes/' . $path . '.php')) {
+            $go = $path;
+        }
     } else {
         header('HTTP/1.0 404 Not Found');
         $go = '404';
@@ -19,7 +22,4 @@ $route = function () use ($paginas) {
 
     require_once 'includes/' . $go . '.php';
 };
-
-$base_url = str_replace('index.php', '', $_SERVER['PHP_SELF']);
-define('BASE_URL', $base_url);
 

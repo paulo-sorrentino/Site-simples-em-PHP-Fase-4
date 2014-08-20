@@ -30,7 +30,7 @@ require 'app/init.php';
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="home">SSPhp</a>
+                <a class="navbar-brand" href="/">SSPhp</a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav" id="main-nav">

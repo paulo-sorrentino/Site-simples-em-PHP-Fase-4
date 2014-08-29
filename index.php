@@ -43,7 +43,8 @@ require 'app/init.php';
 
                 <form class="navbar-form navbar-right" method="post" action="pesquisa">
                     <div class="input-group">
-                    <input type="text" class="form-control col-lg-8" name="pesquisa" placeholder="Pesquisar">
+                        <input type="text" class="form-control col-lg-8" name="pesquisa" placeholder="Pesquisar"
+                               value="<?php echo (isset($_POST['pesquisa']) ? $_POST['pesquisa'] : ''); ?>" >
                         <span class="input-group-btn">
                         <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
                             </span>
@@ -57,7 +58,7 @@ require 'app/init.php';
     <!-- Corpo -->
     <div class="container">
 
-        <?php $route();?>
+        <?php $route(); ?>
 
         <div class="footer footer-main">
             Todos os direitos reservados - <?php echo date('Y'); ?>

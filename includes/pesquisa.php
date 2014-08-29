@@ -2,7 +2,7 @@
 $pagina = pesquisar();
 ?>
 <div class="page-header">
-    <h3>Resultado da pesquisa</h3>
+    <h3>Resultado da pesquisa <?php echo (isset($_POST['pesquisa']) ? 'para '.$_POST['pesquisa'] : ''); ?></h3>
 </div>
 <div class="row">
     <div class="col-sm-4">

@@ -10,7 +10,7 @@ $pagina = listarConteudo('produtos');
     <?php
     foreach($pagina as $conteudo) {
 
-        echo '<div class="col-sm-4">';
+        echo "<div class=\"col-sm-4\" id=\"{$conteudo['id_conteudo']}\">";
             echo "<img class=\"img-circle produto-img\" src=\"img/{$conteudo['imagem']}\" alt=\"{$conteudo['titulo']}\">";
 
             echo utf8_encode("<h2>{$conteudo['titulo']}</h2>");

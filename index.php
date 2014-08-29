@@ -21,7 +21,7 @@ require 'app/init.php';
 
     <body>
     <!-- Barra de navegação -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -40,6 +40,15 @@ require 'app/init.php';
                     <li><a href="servicos"><span class="glyphicon glyphicon-list-alt"></span> Serviços</a></li>
                     <li><a href="contato"><span class="glyphicon glyphicon-envelope"></span> Contato</a></li>
                 </ul>
+
+                <form class="navbar-form navbar-right" method="post" action="pesquisa">
+                    <div class="input-group">
+                    <input type="text" class="form-control col-lg-8" name="pesquisa" placeholder="Pesquisar">
+                        <span class="input-group-btn">
+                        <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                            </span>
+                    </div>
+                </form>
             </div>
             <!-- collapse -->
         </div>

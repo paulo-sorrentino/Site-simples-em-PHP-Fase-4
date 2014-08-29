@@ -1,10 +1,25 @@
 <?php
+require_once 'app/bd_config.php';
+
+function listarConteudo($pagina) {
+    try {
+        $conexao = new \PDO(DSN, USER, PASS);
+    } catch (\PDOException $e) {
+        die("Error código: " . $e->getCode() . ": " . $e->getMessage());
+    }
+
+    $sql = "select * from conteudo where pagina = '{$pagina}'";
+    $stmt = $conexao->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+};
 
 if (preg_match('/\.(?:png|jpg|jpeg|gif|css|js)$/', $_SERVER["REQUEST_URI"])) {
     return false;
 }
 
-$paginas = array('home', 'empresa', 'produtos', 'servicos', 'contato');
+$paginas = array('home', 'empresa', 'produtos', 'servicos', 'contato','conexao');
 
 $route = function () use ($paginas) {
 

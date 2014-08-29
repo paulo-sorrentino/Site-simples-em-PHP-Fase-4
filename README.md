@@ -1,5 +1,5 @@
 # Projeto de um site simples em php
-## Fase 2
+## Fase 3
 
 ### Recursos utilizados
 * Twitter Bootstrap - http://getbootstrap.com/

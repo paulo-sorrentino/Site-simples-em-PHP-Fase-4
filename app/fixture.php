@@ -40,5 +40,4 @@ $sql = utf8_decode($sql);
 $stmt = $conexao->prepare($sql);
 $stmt->execute();
 
-echo "Renovado<br>";
-header('Location: /');
+echo 'Renovado';

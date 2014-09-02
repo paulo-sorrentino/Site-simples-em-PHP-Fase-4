@@ -68,6 +68,8 @@ require 'app/init.php';
 
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/ckeditor/ckeditor.js"></script>
+    <script src="js/custom.js"></script>
 
     </body>
 </head>

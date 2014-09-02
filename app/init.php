@@ -1,4 +1,6 @@
 <?php
+session_start();
+$_SESSION['usuario'] = 'Admin';
 require_once 'app/bd_config.php';
 
 function getPDO() {
@@ -81,7 +83,7 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif|css|js)$/', $_SERVER["REQUEST_URI"])) {
     return false;
 }
 
-$paginas = array('home', 'empresa', 'produtos', 'servicos', 'contato','conexao','pesquisa','editor');
+$paginas = array('home', 'empresa', 'produtos', 'servicos', 'contato','conexao','pesquisa','login','editor');
 
 $route = function () use ($paginas) {
 

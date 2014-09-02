@@ -75,7 +75,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary pull-right"><span
-                                    class="glyphicon glyphicon-send"></span>
+                                    class="glyphicon glyphicon-floppy-disk"></span>
                                 Salvar
                             </button>
 

@@ -131,10 +131,9 @@
                         'imagem' => filter_var($_POST['imagem'], FILTER_SANITIZE_STRING)
                     );
 
-                    var_dump($dados);
-
                     if (atualizar($dados, $id)) {
-                        echo 'Dados enviados com sucesso!';
+                        echo 'Dados enviados com sucesso!<br><br>';
+                        echo '<a href="editor" class="btn btn-success"><span class="glyphicon glyphicon-circle-arrow-left"></span> Voltar</a>';
                     } else {
                         echo 'Não foi possível gravar os dados!';
                     }

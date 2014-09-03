@@ -22,7 +22,6 @@ CREATE TABLE IF NOT EXISTS `conteudo` (
   PRIMARY KEY (`id_conteudo`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 EOT;
-$sql = utf8_decode($sql);
 
 $stmt = $conexao->prepare($sql);
 $stmt->execute();
@@ -36,6 +35,37 @@ INSERT INTO `conteudo` (`id_conteudo`, `pagina`, `titulo`, `conteudo`, `imagem`)
 (5, 'servicos', 'História', 'Em 1987, a partir dos conceitos criados por Alexander, os programadores Kent Beck e Ward Cunningham propuseram os primeiros padrões de projeto para a área da ciência da computação. Em um trabalho para a conferência OOPSLA, eles apresentaram alguns padrões para a construção de janelas na linguagem Smalltalk.5 Nos anos seguintes Beck, Cunningham e outros seguiram com o desenvolvimento destas idéias. O movimento ao redor de padrões de projeto ganhou popularidade com o livro Design Patterns: Elements of Reusable Object-Oriented Software, publicado em 1995. Os autores desse livro, Erich Gamma, Richard Helm, Ralph Johnson e John Vlissides, são conhecidos como a "Gangue dos Quatro" (Gang of Four) ou simplesmente "GoF".Posteriormente, vários outros livros do estilo foram publicados, merecendo destaque Applying UML and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development, que introduziu um conjunto de padrões conhecidos como GRASP (General Responsibility Assignment Software Patterns).', 'galaxy.png');
 EOT;
 $sql = utf8_decode($sql);
+
+$stmt = $conexao->prepare($sql);
+$stmt->execute();
+
+
+$sql = 'DROP TABLE IF EXISTS `usuario`;';
+$sql = utf8_decode($sql);
+
+$stmt = $conexao->prepare($sql);
+$stmt->execute();
+
+
+$sql = <<< 'EOT'
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(20) NOT NULL,
+  `senha` varchar(60) NOT NULL,
+  PRIMARY KEY (`id_usuario`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+EOT;
+
+
+$stmt = $conexao->prepare($sql);
+$stmt->execute();
+
+
+$sql = <<< 'EOT'
+INSERT INTO `usuario` (`id_usuario`, `usuario`, `senha`) VALUES
+(1, 'Admin', '$2y$10$4cuMQnbcUZoZImbDxjuW7Ofe3kSCBzAWCQT1OVDMJUjyncqOnSLDi');
+EOT;
+
 
 $stmt = $conexao->prepare($sql);
 $stmt->execute();

@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['usuario'] = 'Admin';
+//$_SESSION['usuario'] = 'Admin';
 require_once 'app/bd_config.php';
 
 function getPDO() {
@@ -41,14 +41,14 @@ function listarTudo() {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function listarCampo($coluna) {
+function getUsuario($usuario) {
 
     $conexao = getPDO();
-    $sql = "select distinct {$coluna} from conteudo";
+    $sql = "select * from usuario";
     $stmt = $conexao->prepare($sql);
     $stmt->execute();
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 function atualizar(array $dados, $id) {
@@ -90,6 +90,11 @@ $route = function () use ($paginas) {
     $rota = parse_url('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
     $path = str_replace('/', '', $rota['path']);
 
+    if ($path == 'editor' && !$_SESSION['logado']) {
+        $_SESSION['mensagem'] = 'Área protegida. Login Obrigatório.';
+        header('Location: /login');
+    }
+
     if ($path) {
         if (in_array($path, $paginas)) {
             if (file_exists('includes/' . $path . '.php')) {
@@ -103,6 +108,6 @@ $route = function () use ($paginas) {
         $go = 'home';
     }
 
-    require_once 'includes/' . $go . '.php';
+    return $go;
 };
 

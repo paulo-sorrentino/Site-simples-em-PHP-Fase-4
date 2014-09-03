@@ -1,6 +1,8 @@
 <?php
 require 'app/init.php';
+$conteudo = $route();
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -20,6 +22,31 @@ require 'app/init.php';
     <![endif]-->
 
     <body>
+    <!-- Modal -->
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Autenticação</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form class="form-signin" role="form" method="post" action="logverify.php">
+                        <input type="text" name="usuario" class="form-control" placeholder="Usuário" required autofocus>
+                        <input type="password" name="senha" class="form-control" placeholder="Senha" required>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <input name="logar" class="btn btn-primary" type="submit" value="Login">
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- Barra de navegação -->
     <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container">
@@ -40,26 +67,41 @@ require 'app/init.php';
                     <li><a href="servicos"><span class="glyphicon glyphicon-list-alt"></span> Serviços</a></li>
                     <li><a href="contato"><span class="glyphicon glyphicon-envelope"></span> Contato</a></li>
 
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span class="glyphicon glyphicon-cog"></span> Gerenciar<span class="caret"></span></a>
-                        <ul class="dropdown-menu" aria-labelledby="themes">
-                            <li><a href="#">Lista</a></li>
-                            <li class="divider"></li>
-                            <li>
+                    <?php
+                    if (isset($_SESSION['logado']) && $_SESSION['logado']) {
 
-                                <!-- Button trigger modal -->
-                                <a href="#" data-toggle="modal" data-target="#login">
-                                    Login
-                                </a>
 
-                            </li>
+                        ?>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes"><span
+                                    class="glyphicon glyphicon-cog"></span> Gerenciar<span class="caret"></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="themes">
+                                <li><a href="editor"><span class="glyphicon glyphicon-edit"></span> Editar páginas</a></li>
+                                <li class="divider"></li>
+                                <li>
+                                    <!-- Button trigger modal -->
+                                    <a href="logverify.php?action=logoff">
+                                        <span class="glyphicon glyphicon-arrow-left"></span> Sair
+                                    </a>
 
-                            <li><a href="#">Item</a></li>
-                        </ul>
-                    </li>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php
+                    } else {
+                        ?>
+                        <li>
 
+                            <!-- Button trigger modal -->
+                            <a href="#" data-toggle="modal" data-target="#login">
+                                <span class="glyphicon glyphicon-user"></span> Login
+                            </a>
+
+                        </li>
+                    <?php
+                    }
+                    ?>
                 </ul>
-
                 <form class="navbar-form navbar-right" method="post" action="pesquisa">
                     <div class="input-group">
                         <input type="text" class="form-control col-lg-8" name="pesquisa" placeholder="Pesquisar"
@@ -77,40 +119,15 @@ require 'app/init.php';
     <!-- Corpo -->
     <div class="container">
 
-        <?php $route(); ?>
+        <?php
+        require_once 'includes/' . $conteudo . '.php';
+        ?>
 
         <div class="footer footer-main">
             Todos os direitos reservados - <?php echo date('Y'); ?>
         </div>
     </div>
     <!-- Fim do Corpo -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span
-                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Autenticação</h4>
-                </div>
-                <div class="modal-body">
-
-                    <form class="form-signin" role="form" method="post" action="">
-                        <input type="text" name="usuario" class="form-control" placeholder="Usuário" required autofocus>
-                        <input type="password" name="senha" class="form-control" placeholder="Senha" required>
-
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" type="submit">Login</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <script src="js/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
